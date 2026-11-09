@@ -132,9 +132,13 @@
         { "id": "HG-18", "title": "Markdown in descriptions", "status": "backlog", "priority": "low" },
         { "id": "HG-19", "title": "RSS feed of completed work", "status": "backlog", "priority": "low" }
       ]
-    }
+    },
+    { "id": "HG-29", "title": "Untitled task" },
+    { "id": "HG-30", "title": "Untitled task" }
   ],
   "log": [
+    { "at": "2026-11-09T00:44", "task": "HG-30", "kind": "event", "text": "created Untitled task" },
+    { "at": "2026-11-09T00:43", "task": "HG-29", "kind": "event", "text": "created Untitled task" },
     {
       "at": "2026-11-07T17:44",
       "task": "HG-22",
