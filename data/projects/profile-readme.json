@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Profile README",
+  "key": "PR",
+  "description": "GitHub profile README built from generated pixel-HUD SVG panels with a Commit Invaders minigame.",
+  "finished": "2026-09-27",
+  "url": "https://github.com/rfldn0",
+  "image": "images/profile-readme.webp",
+  "tasks": []
+}

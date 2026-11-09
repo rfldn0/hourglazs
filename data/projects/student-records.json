@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Student Records",
+  "key": "SR",
+  "description": "A serverless form and admin CLI that keeps a student group's member records up to date.",
+  "finished": "2026-09-06",
+  "url": "https://rfldn0.github.io/WMUStudentsUpdate/",
+  "image": "images/student-records.webp",
+  "tasks": []
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Portfolio",
+  "key": "PF",
+  "description": "A one-page portfolio told as a pixel-art night city, built with React and Vite.",
+  "finished": "2026-09-28",
+  "image": "images/portfolio.webp",
+  "tasks": []
+}

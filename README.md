@@ -57,7 +57,9 @@ works for older projects you never tracked here, with just a name, description a
   "finished": "2025-06-12", "url": "https://github.com/you/yt-download" }
 ```
 
-`url` (optional) must start with `https://` or `http://`. Finished projects leave the
+`url` (optional) must start with `https://` or `http://`. `image` (optional) is a cover picture
+in `data/images/`, written as `"image": "images/yt-download.webp"` (webp, png, jpg or avif;
+around 960×540 works best). Cards without one show a neutral hourglass placeholder. Finished projects leave the
 "In progress" list on the main page.
 
 ### Momentum

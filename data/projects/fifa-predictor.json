@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "FIFA Predictor",
+  "key": "FP",
+  "description": "An XGBoost model that predicts World Cup match outcomes, with calibrated win/draw probabilities.",
+  "finished": "2026-07-17",
+  "image": "images/fifa-predictor.webp",
+  "tasks": []
+}

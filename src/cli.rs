@@ -95,7 +95,7 @@ pub fn run(cmd: Command) -> Result<()> {
             let loaded = data::load(&data)?;
             report(&data::validate(&loaded))?;
             let site = Site::new(loaded, today);
-            let pages = render::write_public(&site, &out)?;
+            let pages = render::write_public(&site, &data, &out)?;
             println!("built {pages} public pages into {} (today = {})", out.display(), site.clock.today);
         }
         Command::Serve { data, port, publish } => serve::run(serve::Options { data, port, publish })?,

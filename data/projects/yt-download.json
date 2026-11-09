@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "YT Download",
+  "key": "YT",
+  "description": "A small yt-dlp wrapper that downloads audio or video from a link via a custom shell command.",
+  "finished": "2026-10-25",
+  "image": "images/yt-download.webp",
+  "tasks": []
+}

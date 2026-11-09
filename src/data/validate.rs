@@ -24,6 +24,17 @@ pub fn is_safe_id(s: &str) -> bool {
     !s.is_empty() && s.chars().all(|c| c.is_ascii_alphanumeric() || c == '-' || c == '_')
 }
 
+/// `images/<name>.<ext>`: one plain file name inside `data/images/`, so a
+/// project file can't point the build at anything else on disk.
+pub fn is_image_path(p: &str) -> bool {
+    let Some(name) = p.strip_prefix("images/") else { return false };
+    let ok_name = !name.is_empty()
+        && !name.starts_with('.')
+        && name.chars().all(|c| c.is_ascii_alphanumeric() || matches!(c, '-' | '_' | '.'));
+    let ext = name.rsplit('.').next().unwrap_or_default().to_ascii_lowercase();
+    ok_name && name.contains('.') && matches!(ext.as_str(), "webp" | "png" | "jpg" | "jpeg" | "avif")
+}
+
 pub fn validate(loaded: &Loaded) -> Report {
     let mut r = Report::default();
 
@@ -36,6 +47,15 @@ pub fn validate(loaded: &Loaded) -> Report {
             r.errors.push(format!("project {slug:?} is listed twice in the config"));
         }
         check_project(slug, project, &mut r);
+        if !project.image.is_empty() {
+            if !is_image_path(&project.image) {
+                r.errors.push(format!(
+                    "{slug}: image must look like \"images/name.webp\" (webp, png, jpg or avif in data/images/)"
+                ));
+            } else if !loaded.dir.join(&project.image).is_file() {
+                r.errors.push(format!("{slug}: image {:?} not found in the data folder", project.image));
+            }
+        }
     }
 
     // Project files that exist but aren't listed are easy to forget about.
@@ -152,6 +172,17 @@ mod tests {
                 "log":[{"at":"2026-11-01T10:00","task":"P-1","text":"started"}]}"#,
         ));
         assert!(r.is_ok(), "{:?}", r.errors);
+    }
+
+    #[test]
+    fn image_paths_stay_in_data_images() {
+        assert!(is_image_path("images/fifa.webp"));
+        assert!(is_image_path("images/a_b-1.JPG"));
+        assert!(!is_image_path("images/../secret.png"));
+        assert!(!is_image_path("../images/x.png"));
+        assert!(!is_image_path("images/sub/x.png"));
+        assert!(!is_image_path("images/x.svg"));
+        assert!(!is_image_path("images/.png"));
     }
 
     #[test]

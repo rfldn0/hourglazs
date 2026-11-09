@@ -9,6 +9,7 @@ use maud::{Markup, html};
 
 use crate::domain::ProjectIndex;
 
+use crate::render::components::logo;
 use crate::render::layout::{self, PublicNav};
 use crate::render::routes::Ctx;
 
@@ -87,6 +88,13 @@ fn card(p: &ProjectIndex) -> Markup {
     let heading_id = format!("p-{}", p.slug);
     html! {
         article.proj.past aria-labelledby=(heading_id) {
+            // Mood art, not information: empty alt so screen readers skip it.
+            @if p.image.is_empty() {
+                div.cover.placeholder aria-hidden="true" { (logo()) }
+            } @else {
+                img.cover src=(p.image) alt="" loading="lazy" decoding="async";
+            }
+            div.past-body {
             div.proj-head {
                 div {
                     p.status.done { span aria-hidden="true" { "✓ " } "Finished" }
@@ -118,6 +126,7 @@ fn card(p: &ProjectIndex) -> Markup {
                         (f)
                     }
                 }
+            }
             }
         }
     }

@@ -26,6 +26,10 @@ pub fn mime(path: &str) -> &'static str {
         Some("css") => "text/css; charset=utf-8",
         Some("js") => "text/javascript; charset=utf-8",
         Some("svg") => "image/svg+xml",
+        Some("webp") => "image/webp",
+        Some("png") => "image/png",
+        Some("jpg" | "jpeg") => "image/jpeg",
+        Some("avif") => "image/avif",
         Some("json") => "application/json",
         _ => "application/octet-stream",
     }

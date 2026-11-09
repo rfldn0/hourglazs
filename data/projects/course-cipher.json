@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Course Cipher",
+  "key": "CC",
+  "description": "A course-code encryption lab program, later given a retro web front end served on localhost.",
+  "finished": "2026-09-27",
+  "url": "https://github.com/rfldn0/courseEncryptionProgram",
+  "image": "images/course-cipher.webp",
+  "tasks": []
+}

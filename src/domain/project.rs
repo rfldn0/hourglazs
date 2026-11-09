@@ -62,6 +62,8 @@ pub struct ProjectIndex {
     /// Explicit finish date from the project file.
     pub finished: Option<NaiveDate>,
     pub url: String,
+    /// `images/<file>`, relative to the data directory and the public site.
+    pub image: String,
     /// Tasks in depth-first (file) order.
     pub nodes: Vec<Node>,
     pub roots: Vec<usize>,
@@ -81,6 +83,7 @@ impl ProjectIndex {
             public: p.public,
             finished: p.finished,
             url: p.url,
+            image: p.image,
             nodes: Vec::new(),
             roots: Vec::new(),
             log: p.log,

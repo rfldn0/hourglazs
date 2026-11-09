@@ -66,11 +66,17 @@ pub fn public_page(site: &Site, path: &str) -> Option<Markup> {
 }
 
 /// Write the public site into `out`, replacing any previous build there.
-pub fn write_public(site: &Site, out: &Path) -> Result<usize> {
+/// Writes the public site. Project images are copied from `data_dir`.
+pub fn write_public(site: &Site, data_dir: &Path, out: &Path) -> Result<usize> {
     prepare_out_dir(out)?;
     for page in routes::PUBLIC_PAGES {
         let html = public_page(site, page).expect("every public route renders");
         write(&out.join(page), html.0.as_bytes())?;
+    }
+    for p in site.projects.iter().filter(|p| p.public && !p.image.is_empty()) {
+        // Validation already pinned this to one file inside data/images/.
+        let bytes = fs::read(data_dir.join(&p.image)).with_context(|| format!("cannot read {}", p.image))?;
+        write(&out.join(&p.image), &bytes)?;
     }
     for (path, bytes) in assets::PUBLIC {
         write(&out.join(path), bytes)?;

@@ -67,6 +67,13 @@ fn get(opts: &Options, path: &str) -> Resp {
     if let Some(bytes) = assets::get(&path) {
         return bytes_resp(200, bytes.to_vec(), assets::mime(&path));
     }
+    // Project images for the public preview, straight from data/images/.
+    if let Some(image) = path.strip_prefix(routes::PUBLIC_PREVIEW_DIR).filter(|p| data::is_image_path(p)) {
+        return match std::fs::read(opts.data.join(image)) {
+            Ok(bytes) => bytes_resp(200, bytes, assets::mime(image)),
+            Err(_) => bytes_resp(404, b"not found".to_vec(), "text/plain; charset=utf-8"),
+        };
+    }
 
     let loaded = match data::load(&opts.data) {
         Ok(l) => l,

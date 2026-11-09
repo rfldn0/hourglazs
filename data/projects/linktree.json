@@ -1,0 +1,10 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Linktree",
+  "key": "LT",
+  "description": "A personal link page in a retro character-sheet style: static HTML and CSS, no JavaScript.",
+  "finished": "2026-09-28",
+  "url": "https://rfldn0.github.io/linktree/",
+  "image": "images/linktree.webp",
+  "tasks": []
+}

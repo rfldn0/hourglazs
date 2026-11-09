@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Visualiod",
+  "key": "VZ",
+  "description": "A GPU audio visualizer that reacts to system audio with warp feedback and four modes.",
+  "finished": "2026-04-22",
+  "image": "images/visualiod.webp",
+  "tasks": []
+}

@@ -59,7 +59,15 @@ button { font: inherit; color: inherit; }
 
 /* ---------- past projects ---------- */
 .past-list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr)); }
-.proj.past { gap: 10px; }
+.proj.past { gap: 0; padding: 0; overflow: hidden; }
+.past-body { display: flex; flex-direction: column; gap: 10px; padding: clamp(18px, 2.4vw, 24px); }
+.cover { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-bottom: 1px solid var(--line2); background: var(--panel2); }
+/* No picture yet: the hourglass on a quiet gradient, same frame size. */
+.cover.placeholder {
+  display: grid; place-items: center;
+  background: radial-gradient(120% 90% at 50% 110%, color-mix(in srgb, var(--red) 14%, var(--panel2)), var(--panel2) 60%);
+}
+.cover.placeholder svg { width: 56px; height: 56px; opacity: .55; }
 .proj.past .proj-head { align-items: flex-start; }
 .proj.past time { white-space: nowrap; margin-top: 2px; }
 .ext { color: var(--text); text-decoration: none; }

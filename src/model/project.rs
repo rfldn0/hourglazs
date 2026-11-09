@@ -52,6 +52,9 @@ pub struct Project {
     /// Repo or demo link, shown on the public "Past projects" page.
     #[serde(default, skip_serializing_if = "String::is_empty")]
     pub url: String,
+    /// Cover picture, a file in `data/images/` (e.g. `images/compiler.webp`).
+    #[serde(default, skip_serializing_if = "String::is_empty")]
+    pub image: String,
     #[serde(default)]
     pub tasks: Vec<Task>,
     #[serde(default)]
