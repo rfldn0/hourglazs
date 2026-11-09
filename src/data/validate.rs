@@ -63,6 +63,10 @@ fn check_project(slug: &str, p: &Project, r: &mut Report) {
     if p.key.trim().is_empty() {
         r.errors.push(format!("{slug}: project key is empty"));
     }
+    // Only web links: nothing like `javascript:` ends up in an href.
+    if !p.url.is_empty() && !(p.url.starts_with("https://") || p.url.starts_with("http://")) {
+        r.errors.push(format!("{slug}: url must start with https:// or http://"));
+    }
 
     let mut ids = HashSet::new();
     let mut stack: Vec<&Task> = p.tasks.iter().collect();
@@ -148,5 +152,14 @@ mod tests {
                 "log":[{"at":"2026-11-01T10:00","task":"P-1","text":"started"}]}"#,
         ));
         assert!(r.is_ok(), "{:?}", r.errors);
+    }
+
+    #[test]
+    fn only_web_links() {
+        let ok = validate(&loaded(r#"{"name":"P","key":"P","finished":"2025-06-01","url":"https://github.com/x/y"}"#));
+        assert!(ok.is_ok(), "{:?}", ok.errors);
+        let bad = validate(&loaded(r#"{"name":"P","key":"P","url":"javascript:alert(1)"}"#));
+        assert!(bad.errors.join("
+").contains("url must start"), "{:?}", bad.errors);
     }
 }

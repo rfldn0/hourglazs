@@ -59,6 +59,9 @@ pub struct ProjectIndex {
     pub description: String,
     /// Shown on the public progress page.
     pub public: bool,
+    /// Explicit finish date from the project file.
+    pub finished: Option<NaiveDate>,
+    pub url: String,
     /// Tasks in depth-first (file) order.
     pub nodes: Vec<Node>,
     pub roots: Vec<usize>,
@@ -76,6 +79,8 @@ impl ProjectIndex {
             accent: p.color,
             description: p.description,
             public: p.public,
+            finished: p.finished,
+            url: p.url,
             nodes: Vec::new(),
             roots: Vec::new(),
             log: p.log,
@@ -187,6 +192,17 @@ impl ProjectIndex {
     /// Union of every scheduled task's span.
     pub fn span(&self) -> Option<Span> {
         self.roots.iter().filter_map(|&r| self.nodes[r].span).reduce(Span::union)
+    }
+
+    /// Marked finished, or every task is done.
+    pub fn is_finished(&self) -> bool {
+        let pr = self.overall();
+        self.finished.is_some() || (pr.total > 0 && pr.done == pr.total)
+    }
+
+    /// The `finished` date, else the last task completion.
+    pub fn finished_on(&self) -> Option<NaiveDate> {
+        self.finished.or_else(|| self.nodes.iter().filter_map(|n| n.task.done_on).max())
     }
 }
 

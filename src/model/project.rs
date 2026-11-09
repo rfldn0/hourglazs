@@ -1,5 +1,6 @@
 //! A project file: `data/projects/<slug>.json`.
 
+use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 
 use super::{LogEntry, Task};
@@ -44,6 +45,13 @@ pub struct Project {
     /// Show this project on the public progress page.
     #[serde(default = "yes", skip_serializing_if = "is_true")]
     pub public: bool,
+    /// When the project was finished. Projects whose tasks are all done
+    /// count as finished too; this also covers past work never tracked here.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub finished: Option<NaiveDate>,
+    /// Repo or demo link, shown on the public "Past projects" page.
+    #[serde(default, skip_serializing_if = "String::is_empty")]
+    pub url: String,
     #[serde(default)]
     pub tasks: Vec<Task>,
     #[serde(default)]

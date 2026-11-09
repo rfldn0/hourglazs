@@ -46,6 +46,20 @@ The public page shows task titles, progress, milestones and completion dates. It
 shows descriptions, notes or the activity log. To keep a whole project off it, add
 `"public": false` to that project's file.
 
+### Past projects
+
+The public site has a second page, `past.html`, listing finished projects by year. A project
+counts as finished when every task is done, or when its file has a `finished` date. That also
+works for older projects you never tracked here, with just a name, description and link:
+
+```json
+{ "name": "YT Download", "key": "YT", "description": "A small yt-dlp wrapper.",
+  "finished": "2025-06-12", "url": "https://github.com/you/yt-download" }
+```
+
+`url` (optional) must start with `https://` or `http://`. Finished projects leave the
+"In progress" list on the main page.
+
 ### Momentum
 
 Any day with an action counts as active: a completed task, a status change, a new task or

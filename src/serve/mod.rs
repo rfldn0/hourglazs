@@ -77,8 +77,8 @@ fn get(opts: &Options, path: &str) -> Resp {
         return problem_page(&report.errors);
     }
     let site = Site::new(loaded, None);
-    let page = if path == routes::PUBLIC_PREVIEW {
-        Some(render::public_page(&site, &path))
+    let page = if path.starts_with(routes::PUBLIC_PREVIEW_DIR) {
+        render::public_page(&site, &path)
     } else {
         render::app_page(&site, &path, true)
     };

@@ -20,8 +20,8 @@ use crate::domain::{Progress, ProjectIndex, TaskRef};
 use crate::model::Status;
 
 use crate::render::components::title_of;
-use crate::render::layout;
-use crate::render::routes::Ctx;
+use crate::render::layout::{self, PublicNav};
+use crate::render::routes::{self, Ctx};
 
 const RECENT_LIMIT: usize = 12;
 const NOW_LIMIT: usize = 4;
@@ -51,10 +51,20 @@ pub fn page(ctx: &Ctx) -> Markup {
                 p.lede { "How far along each project is, what's next, and whether work happened today." }
             }
             (momentum_section(&projects, &days, today))
+            @let active: Vec<&&ProjectIndex> = projects.iter().filter(|p| !p.is_finished()).collect();
+            @let finished = projects.len() - active.len();
             section aria-labelledby="projects" {
-                (heading("projects", "Projects", &projects.len().to_string()))
-                @if projects.is_empty() { p.empty { "Nothing to show yet." } }
-                div.projects { @for p in &projects { (project(p, today)) } }
+                (heading("projects", "In progress", &active.len().to_string()))
+                @if active.is_empty() { p.empty { "Nothing in progress right now." } }
+                div.projects { @for p in &active { (project(p, today)) } }
+                @if finished > 0 {
+                    p.more {
+                        a href=(routes::PUBLIC_PAST) {
+                            (plural(finished as i64, "finished project", "finished projects")) " in Past projects"
+                            span aria-hidden="true" { " →" }
+                        }
+                    }
+                }
             }
             div.split {
             @if !milestones.is_empty() {
@@ -68,7 +78,13 @@ pub fn page(ctx: &Ctx) -> Markup {
             }
         }
     };
-    layout::public_page(ctx, live(ctx, &days), content)
+    layout::public_page(ctx, PublicNav::Progress, live(ctx, &days), content)
+}
+
+/// The top-bar pill for any public page.
+pub fn status_pill(ctx: &Ctx) -> Markup {
+    let projects: Vec<&ProjectIndex> = ctx.site.projects.iter().filter(|p| p.public).collect();
+    live(ctx, &momentum::activity(&projects))
 }
 
 /// Top-bar pill: is work happening, and how fresh is this page.

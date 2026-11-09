@@ -53,6 +53,18 @@ button { font: inherit; color: inherit; }
 .late { color: var(--red); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 .empty { color: var(--dim); }
+.more { margin-top: 16px; }
+.more a { display: inline-flex; align-items: center; min-height: 44px; color: var(--dim); text-decoration: underline; text-underline-offset: 3px; }
+.more a:hover { color: var(--text); }
+
+/* ---------- past projects ---------- */
+.past-list { grid-template-columns: repeat(auto-fill, minmax(min(100%, 400px), 1fr)); }
+.proj.past { gap: 10px; }
+.proj.past .proj-head { align-items: flex-start; }
+.proj.past time { white-space: nowrap; margin-top: 2px; }
+.ext { color: var(--text); text-decoration: none; }
+.ext:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ext span { color: var(--faint); font-weight: 400; }
 
 .skip { position: absolute; left: -999px; top: 8px; z-index: 10; padding: 10px 14px; border-radius: 8px; background: var(--text); color: var(--bg); font-weight: 500; }
 .skip:focus { left: 8px; }
@@ -71,8 +83,16 @@ button { font: inherit; color: inherit; }
 
 /* ---------- top bar: one slim row, not sticky (nothing to cover focus) ---------- */
 .top { border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; gap: 12px; min-height: 64px; }
-.brand { display: flex; align-items: center; gap: 10px; margin-right: auto; font-weight: 600; font-size: 16px; letter-spacing: -.01em; }
+.top .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; min-height: 64px; padding-block: 10px; }
+.brand { display: flex; align-items: center; gap: 10px; min-height: 44px; font-weight: 600; font-size: 16px; letter-spacing: -.01em; color: var(--text); text-decoration: none; }
+/* Page tabs: the app's sidebar items, laid flat. */
+.tabs { display: flex; gap: 4px; margin-left: 12px; margin-right: auto; }
+.tabs a {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 0 12px; border-radius: 8px;
+  color: var(--dim); text-decoration: none; font-size: 14px;
+}
+.tabs a:hover { color: var(--text); background: var(--panel2); }
+.tabs a[aria-current="page"] { color: var(--text); background: var(--panel2); font-weight: 500; }
 .logo { flex: none; filter: drop-shadow(0 0 5px rgba(255,77,79,.45)); }
 /* Status pill: the app's .pill with the sidebar's "built" dot. */
 .live {
@@ -198,6 +218,8 @@ details.phases summary:hover { color: var(--text); }
 
 /* ---------- small screens ---------- */
 @media (max-width: 640px) {
+  .tabs { order: 5; width: 100%; margin: 0; }
+  .brand { margin-right: auto; }
   .live .upd, .live .sep { display: none; }
   .brand span { font-size: 15px; }
   .heat-grid { grid-template-columns: repeat(20, minmax(0, 1fr)); }

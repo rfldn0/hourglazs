@@ -121,30 +121,51 @@ pub fn page(ctx: &Ctx, chrome: Chrome, content: Markup) -> Markup {
     }
 }
 
-/// The public progress page: no sidebar, no links into the private app.
+/// Which public page is showing.
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub enum PublicNav {
+    Progress,
+    Past,
+}
+
+/// The public site's shell: no sidebar, no links into the private app.
 /// Follows the visitor's light/dark preference unless they pick one.
 /// `status` is the pill in the top bar (see views::public).
-pub fn public_page(ctx: &Ctx, status: Markup, content: Markup) -> Markup {
+pub fn public_page(ctx: &Ctx, nav: PublicNav, status: Markup, content: Markup) -> Markup {
     let site = ctx.site;
     let clock = site.clock;
-    let description = format!("What {} is building, and how far along it is.", site.owner);
+    let (title, description) = match nav {
+        PublicNav::Progress => (
+            format!("{} · progress", site.title),
+            format!("What {} is building, and how far along it is.", site.owner),
+        ),
+        PublicNav::Past => (format!("Past projects · {}", site.title), format!("Projects {} has finished.", site.owner)),
+    };
     let extra = html! {
         meta name="description" content=(description);
         meta name="color-scheme" content="light dark";
         meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f4f1";
         meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0c";
-        meta property="og:title" content=(format!("{} · progress", site.title));
+        meta property="og:title" content=(title);
         meta property="og:description" content=(description);
+    };
+    // Public pages are siblings: link by bare file name.
+    let tab = |href: &str, label: &str, me: PublicNav| {
+        html! { a href=(href) aria-current=[(nav == me).then_some("page")] { (label) } }
     };
     html! {
         (DOCTYPE)
         html lang="en" {
-            (head(ctx, &format!("{} · progress", site.title), routes::PUBLIC_STYLE, APP_FONTS, extra))
+            (head(ctx, &title, routes::PUBLIC_STYLE, APP_FONTS, extra))
             body {
                 a.skip href="#main" { "Skip to content" }
                 header.top {
                     div.wrap {
-                        span.brand { (logo()) span { (site.title) } }
+                        a.brand href=(routes::PUBLIC) { (logo()) span { (site.title) } }
+                        nav.tabs aria-label="Pages" {
+                            (tab(routes::PUBLIC, "Progress", PublicNav::Progress))
+                            (tab(routes::PUBLIC_PAST, "Past projects", PublicNav::Past))
+                        }
                         (status)
                         button.theme-btn type="button" data-theme-toggle aria-label="Switch colour theme" {
                             span aria-hidden="true" data-theme-icon { "◐" }

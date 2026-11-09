@@ -8,10 +8,14 @@ use crate::domain::Site;
 // Local app
 pub const HOME: &str = "index.html";
 pub const TIMELINE: &str = "timeline.html";
-/// Where the local server previews the public page.
+/// Where the local server previews the public site.
+pub const PUBLIC_PREVIEW_DIR: &str = "public/";
 pub const PUBLIC_PREVIEW: &str = "public/index.html";
-// Public site (what `hourglazs build` writes)
+// Public site (what `hourglazs build` writes). Sibling pages, so they link
+// to each other by bare file name.
 pub const PUBLIC: &str = "index.html";
+pub const PUBLIC_PAST: &str = "past.html";
+pub const PUBLIC_PAGES: [&str; 2] = [PUBLIC, PUBLIC_PAST];
 
 pub const STYLE: &str = "assets/style.css";
 pub const PUBLIC_STYLE: &str = "assets/public.css";

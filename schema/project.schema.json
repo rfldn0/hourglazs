@@ -48,6 +48,15 @@
       "type": "boolean",
       "default": true,
       "description": "Show on the public progress page"
+    },
+    "finished": {
+      "$ref": "#/$defs/date",
+      "description": "When the project was finished; it then appears under Past projects"
+    },
+    "url": {
+      "type": "string",
+      "pattern": "^https?://",
+      "description": "Repo or demo link shown under Past projects"
     }
   },
   "$defs": {
