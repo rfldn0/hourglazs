@@ -1,0 +1,9 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "public": false,
+  "name": "Blog",
+  "key": "BL",
+  "color": "cyan",
+  "description": "Personal blog in Astro",
+  "tasks": []
+}

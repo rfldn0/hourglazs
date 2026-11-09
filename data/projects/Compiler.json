@@ -1,0 +1,13 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Compiler",
+  "key": "BL",
+  "color": "red",
+  "description": "Write my own compiler in c..",
+  "tasks": [
+    { "id": "BL-1", "title": "Requirement Collection", "description": "Documenting and collecting requirements for the project." }
+  ],
+  "log": [
+    { "at": "2026-11-09T00:55", "task": "BL-1", "kind": "event", "text": "created Requirement Collectino" }
+  ]
+}
