@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "hourglazs site config",
+  "type": "object",
+  "required": ["owner", "projects"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "title": { "type": "string", "default": "hourglazs" },
+    "owner": { "type": "string", "description": "Name used in the home greeting" },
+    "today": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Pin today's date for reproducible builds" },
+    "projects": {
+      "type": "array",
+      "description": "Project slugs in sidebar order; each is data/projects/<slug>.json",
+      "items": { "type": "string", "pattern": "^[A-Za-z0-9_-]+$" }
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "hourglazs",
+  "key": "HG",
+  "color": "red",
+  "description": "Personal PM tracker in Rust",
+  "tasks": [
+    {
+      "id": "HG-1",
+      "title": "Design",
+      "status": "done",
+      "done_on": "2026-11-07",
+      "subtasks": [
+        { "id": "HG-2", "title": "Wireframes for every view", "status": "done", "due": "2026-11-07", "done_on": "2026-11-07" },
+        { "id": "HG-3", "title": "Visual direction v2 (dark + red glow)", "status": "done", "due": "2026-11-07", "done_on": "2026-11-07" }
+      ]
+    },
+    {
+      "id": "HG-4",
+      "title": "Static generator",
+      "status": "done",
+      "priority": "high",
+      "done_on": "2026-11-07",
+      "description": "Rust CLI that reads data/*.json and renders plain HTML pages.\n\nNo runtime fetches: all data is baked in at build time, one JSON file per project.",
+      "subtasks": [
+        {
+          "id": "HG-5",
+          "title": "Data model + validation",
+          "status": "done",
+          "start": "2026-11-07",
+          "days": 1,
+          "hours": 3,
+          "done_on": "2026-11-07",
+          "tags": ["serde"]
+        },
+        {
+          "id": "HG-6",
+          "title": "Views",
+          "status": "done",
+          "priority": "high",
+          "done_on": "2026-11-07",
+          "subtasks": [
+            { "id": "HG-7", "title": "Home", "status": "done", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" },
+            { "id": "HG-8", "title": "Board", "status": "done", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" },
+            { "id": "HG-9", "title": "Tasks tree", "status": "done", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" },
+            { "id": "HG-10", "title": "Gantt", "status": "done", "priority": "high", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" },
+            { "id": "HG-11", "title": "Timeline", "status": "done", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" }
+          ]
+        },
+        { "id": "HG-12", "title": "Light theme pass", "status": "done", "priority": "low", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" },
+        { "id": "HG-20", "title": "Phone layout fixes", "status": "done", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" },
+        { "id": "HG-21", "title": "Sidebar shortcuts 3–5 on every page", "status": "done", "start": "2026-11-07", "days": 1, "done_on": "2026-11-07" }
+      ]
+    },
+    {
+      "id": "HG-22",
+      "title": "Local editing app + public page",
+      "status": "done",
+      "priority": "high",
+      "done_on": "2026-11-07",
+      "description": "hourglazs serve: full app with editing on localhost, saving straight to the JSON files.\n\nThe GitHub site becomes a public progress page only.",
+      "subtasks": [
+        {
+          "id": "HG-23",
+          "title": "JSON writer that keeps files hand-editable",
+          "status": "done",
+          "start": "2026-11-07",
+          "days": 1,
+          "done_on": "2026-11-07"
+        },
+        {
+          "id": "HG-24",
+          "title": "Edit API (update, create, delete, notes)",
+          "status": "done",
+          "start": "2026-11-07",
+          "days": 1,
+          "done_on": "2026-11-07"
+        },
+        {
+          "id": "HG-25",
+          "title": "Edit UI: checkboxes, drag and drop, task form",
+          "status": "done",
+          "priority": "high",
+          "start": "2026-11-07",
+          "days": 2,
+          "done_on": "2026-11-07"
+        },
+        {
+          "id": "HG-26",
+          "title": "Public progress page",
+          "status": "done",
+          "priority": "high",
+          "start": "2026-11-07",
+          "days": 2,
+          "done_on": "2026-11-07"
+        },
+        {
+          "id": "HG-27",
+          "title": "Background commit + push (--publish)",
+          "status": "done",
+          "start": "2026-11-07",
+          "days": 2,
+          "done_on": "2026-11-07"
+        }
+      ]
+    },
+    {
+      "id": "HG-13",
+      "title": "Ship it",
+      "subtasks": [
+        { "id": "HG-28", "title": "Create GitHub repo and push", "priority": "high", "start": "2026-11-09", "days": 1 },
+        {
+          "id": "HG-14",
+          "title": "Enable GitHub Pages workflow",
+          "status": "doing",
+          "priority": "high",
+          "start": "2026-11-09",
+          "days": 1,
+          "description": "Workflow file is written (.github/workflows/pages.yml); needs the repo and Pages set to GitHub Actions.",
+          "tags": ["ci"]
+        },
+        { "id": "HG-15", "title": "Custom domain", "status": "backlog", "priority": "low" }
+      ]
+    },
+    { "id": "HG-16", "title": "v0.1 public page live", "priority": "high", "due": "2026-11-10", "milestone": true },
+    {
+      "id": "HG-17",
+      "title": "Later ideas",
+      "status": "backlog",
+      "priority": "low",
+      "subtasks": [
+        { "id": "HG-18", "title": "Markdown in descriptions", "status": "backlog", "priority": "low" },
+        { "id": "HG-19", "title": "RSS feed of completed work", "status": "backlog", "priority": "low" }
+      ]
+    }
+  ],
+  "log": [
+    {
+      "at": "2026-11-07T17:44",
+      "task": "HG-22",
+      "text": "Tested end to end: 21 browser checks (edit, drag and drop, notes, delete) and auto-publish to a sandbox remote."
+    },
+    { "at": "2026-11-07T17:44", "task": "HG-22", "kind": "event", "text": "completed Local editing app + public page" },
+    { "at": "2026-11-07T17:44", "task": "HG-27", "kind": "event", "text": "completed Background commit + push (--publish)" },
+    { "at": "2026-11-07T17:44", "task": "HG-26", "kind": "event", "text": "completed Public progress page" },
+    { "at": "2026-11-07T17:44", "task": "HG-25", "kind": "event", "text": "completed Edit UI: checkboxes, drag and drop, task form" },
+    {
+      "at": "2026-11-07T18:00",
+      "task": "HG-22",
+      "text": "Split into two sites: the full app runs locally with editing, GitHub only hosts a public progress page."
+    },
+    { "at": "2026-11-07T17:30", "task": "HG-21", "kind": "event", "text": "completed Sidebar shortcuts 3–5 on every page" },
+    { "at": "2026-11-07T15:40", "task": "HG-5", "kind": "event", "text": "completed Data model + validation" },
+    {
+      "at": "2026-11-07T13:10",
+      "task": "HG-4",
+      "text": "Went with a static generator instead of a WASM app: no runtime fetch, no toolchain beyond cargo."
+    },
+    { "at": "2026-11-07T12:00", "task": "HG-2", "text": "Wireframes cover home, board, timeline, gantt, tasks and the task drawer." }
+  ]
+}

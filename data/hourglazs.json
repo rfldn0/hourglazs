@@ -1,0 +1,6 @@
+{
+  "$schema": "../schema/config.schema.json",
+  "title": "hourglazs",
+  "owner": "Victor",
+  "projects": ["hourglazs", "portfolio"]
+}
