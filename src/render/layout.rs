@@ -50,7 +50,7 @@ const THEME_BOOT: &str =
     "try{var t=localStorage.getItem('hourglazs.theme');if(t)document.documentElement.dataset.theme=t}catch(e){}";
 
 /// The app's typeface.
-const APP_FONTS: &str = "https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap";
+const APP_FONTS: &str = "https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap";
 
 fn head(ctx: &Ctx, title: &str, stylesheet: &str, fonts: &str, extra: Markup) -> Markup {
     html! {
@@ -143,9 +143,8 @@ pub fn public_page(ctx: &Ctx, nav: PublicNav, status: Markup, content: Markup) -
     };
     let extra = html! {
         meta name="description" content=(description);
-        meta name="color-scheme" content="light dark";
-        meta name="theme-color" media="(prefers-color-scheme: light)" content="#f5f4f1";
-        meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0a0a0c";
+        meta name="color-scheme" content="dark light";
+        meta name="theme-color" content="#0F0D0B";
         meta property="og:title" content=(title);
         meta property="og:description" content=(description);
     };

@@ -25,7 +25,10 @@
         "amber",
         "green",
         "violet",
-        "cyan"
+        "cyan",
+        "rose",
+        "clay",
+        "sage"
       ],
       "default": "red"
     },

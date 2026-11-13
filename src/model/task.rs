@@ -42,7 +42,7 @@ impl Status {
     pub fn color(self) -> &'static str {
         match self {
             Status::Backlog => "var(--faint)",
-            Status::Todo => "var(--dim)",
+            Status::Todo => "var(--dusk)",
             Status::Doing => "var(--amber)",
             Status::Done => "var(--green)",
         }

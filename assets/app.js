@@ -10,9 +10,8 @@
 
   /* ---- theme ---- */
   const themeBtn = document.querySelector('[data-theme-toggle]');
-  // The public page follows the system setting until the visitor picks one.
-  const systemLight = () => window.matchMedia && matchMedia('(prefers-color-scheme: light)').matches;
-  const current = () => root.dataset.theme || (systemLight() ? 'light' : 'dark');
+  // Dark (ink) is the default everywhere until the visitor picks light.
+  const current = () => root.dataset.theme || 'dark';
   const syncTheme = () => {
     if (!themeBtn) return;
     const dark = current() === 'dark';

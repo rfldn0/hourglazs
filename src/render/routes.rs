@@ -22,6 +22,8 @@ pub const PUBLIC_STYLE: &str = "assets/public.css";
 pub const SCRIPT: &str = "assets/app.js";
 pub const EDIT_SCRIPT: &str = "assets/edit.js";
 pub const ICON: &str = "assets/hourglass.svg";
+pub const STARS_DUST: &str = "assets/sky/stars-dust.svg";
+pub const STARS_BRIGHT: &str = "assets/sky/stars-bright.svg";
 
 pub fn board(slug: &str, parent: Option<&str>) -> String {
     match parent {

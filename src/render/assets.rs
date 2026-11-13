@@ -3,10 +3,12 @@
 use super::routes;
 
 /// Shipped with the public build.
-pub const PUBLIC: [(&str, &[u8]); 3] = [
+pub const PUBLIC: [(&str, &[u8]); 5] = [
     (routes::PUBLIC_STYLE, include_bytes!("../../assets/public.css")),
     (routes::SCRIPT, include_bytes!("../../assets/app.js")),
     (routes::ICON, include_bytes!("../../assets/hourglass.svg")),
+    (routes::STARS_DUST, include_bytes!("../../assets/sky/stars-dust.svg")),
+    (routes::STARS_BRIGHT, include_bytes!("../../assets/sky/stars-bright.svg")),
 ];
 
 /// Only served by the local editing server.

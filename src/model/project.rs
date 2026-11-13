@@ -15,6 +15,9 @@ pub enum Accent {
     Green,
     Violet,
     Cyan,
+    Rose,
+    Clay,
+    Sage,
 }
 
 impl Accent {
@@ -25,6 +28,9 @@ impl Accent {
             Accent::Green => "var(--green)",
             Accent::Violet => "var(--violet)",
             Accent::Cyan => "var(--cyan)",
+            Accent::Rose => "var(--rose)",
+            Accent::Clay => "var(--clay)",
+            Accent::Sage => "var(--sage)",
         }
     }
 }
