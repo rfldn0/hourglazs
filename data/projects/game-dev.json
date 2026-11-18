@@ -4,7 +4,6 @@
   "key": "GV",
   "color": "red",
   "description": "Work on rpg simulation game development",
-  "finished": "2028-12-12",
   "image": "images/game-dev.png",
   "tasks": [
     { "id": "GV-1", "title": "Research on project requirements", "status": "backlog" },
