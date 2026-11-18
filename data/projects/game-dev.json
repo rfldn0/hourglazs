@@ -1,0 +1,17 @@
+{
+  "$schema": "../../schema/project.schema.json",
+  "name": "Game dev",
+  "key": "GV",
+  "color": "red",
+  "description": "Work on rpg simulation game development",
+  "finished": "2028-12-12",
+  "image": "images/game-dev.png",
+  "tasks": [
+    { "id": "GV-1", "title": "Research on project requirements", "status": "backlog" },
+    { "id": "GV-2", "title": "Initial development", "status": "backlog" }
+  ],
+  "log": [
+    { "at": "2026-11-18T00:50", "task": "GV-2", "kind": "event", "text": "created Initial development" },
+    { "at": "2026-11-18T00:49", "task": "GV-1", "kind": "event", "text": "created Research on project requirements" }
+  ]
+}
